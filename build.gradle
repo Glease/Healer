@@ -1,0 +1,68 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "gt"
+            url = "https://gregtech.overminddl1.com/"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+        maven {
+            name = "jitpack.io"
+            url = "https://jitpack.io"
+        }
+    }
+    dependencies {
+        classpath 'com.github.GTNewHorizons:ForgeGradle:stable-2021-11-20'
+    }
+}
+
+apply plugin: 'forge'
+
+version = "1.0.0"
+group= "net.glease"
+archivesBaseName = "Healer"
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+minecraft {
+    version = "1.7.10-10.13.4.1614-1.7.10"
+    runDir = "run"
+}
+
+repositories {
+}
+
+dependencies {
+}
+
+jar {
+    manifest {
+        attributes "FMLCorePlugin": "net.glease.healer.Healer"
+        attributes "FMLCorePluginContainsFMLMod": true
+    }
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+    manifest {
+        attributes "FMLCorePlugin": "net.glease.healer.Healer"
+        attributes "FMLCorePluginContainsFMLMod": true
+    }
+}
+
+artifacts {
+    archives(sourceJar)
+}
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = new File(compileJava.destinationDir.parentFile.parentFile, "idea")
+        testOutputDir = new File(compileTestJava.destinationDir.parentFile.parentFile, "ideaTest")
+    }
+}
