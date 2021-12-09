@@ -21,7 +21,7 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.0.0"
+version = "1.0.1"
 group= "net.glease"
 archivesBaseName = "Healer"
 
@@ -42,7 +42,6 @@ dependencies {
 jar {
     manifest {
         attributes "FMLCorePlugin": "net.glease.healer.Healer"
-        attributes "FMLCorePluginContainsFMLMod": true
     }
 }
 
@@ -51,7 +50,6 @@ task sourceJar(type: Jar) {
     classifier = 'sources'
     manifest {
         attributes "FMLCorePlugin": "net.glease.healer.Healer"
-        attributes "FMLCorePluginContainsFMLMod": true
     }
 }
 
