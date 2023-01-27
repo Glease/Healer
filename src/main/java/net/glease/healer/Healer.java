@@ -28,7 +28,7 @@ import static net.glease.healer.Healer.MOD_PACKAGE;
 @cpw.mods.fml.relauncher.IFMLLoadingPlugin.TransformerExclusions(MOD_PACKAGE)
 @cpw.mods.fml.relauncher.IFMLLoadingPlugin.SortingIndex(1001)
 @net.minecraftforge.fml.relauncher.IFMLLoadingPlugin.Name(MOD_ID)
-@net.minecraftforge.fml.relauncher.IFMLLoadingPlugin.TransformerExclusions(MOD_ID)
+@net.minecraftforge.fml.relauncher.IFMLLoadingPlugin.TransformerExclusions(MOD_PACKAGE)
 @net.minecraftforge.fml.relauncher.IFMLLoadingPlugin.SortingIndex(1001)
 public class Healer implements cpw.mods.fml.relauncher.IFMLLoadingPlugin, net.minecraftforge.fml.relauncher.IFMLLoadingPlugin {
     public static final String MOD_ID = "healer";
@@ -125,8 +125,8 @@ public class Healer implements cpw.mods.fml.relauncher.IFMLLoadingPlugin, net.mi
     @Override
     public void injectData(Map<String, Object> data) {
         if (getTweakClasses().contains("com.forgeessentials.core.preloader.FELaunchHandler")) {
-            log("ForgeEssentials detected. Setting default PatchStage to PREINIT");
-            selectedPatchStage = PatchStage.PREINIT;
+            log("ForgeEssentials detected. Setting default PatchStage to POSTINIT");
+            selectedPatchStage = PatchStage.POSTINIT;
         }
         try {
             selectedPatchStage = PatchStage.valueOf(System.getProperty("net.glease.healer.patch_stage", selectedPatchStage.name().toUpperCase(Locale.ROOT)));
